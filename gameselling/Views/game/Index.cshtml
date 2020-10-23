@@ -1,0 +1,51 @@
+﻿@model IEnumerable<gameselling.Models.game>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+  
+                     
+<h2>Index</h2>
+@using(Html.BeginForm())
+{
+<p>
+    @Html.TextBox("searchString",ViewBag.currentSearchString as string)
+    <input type="submit" ,value"Search"class=btn btn.primary" />
+
+</p>}
+<p>
+    @Html.ActionLink("Create New", "Create")
+   
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NextSortOrder }) |
+            <p><a href="~/infogames/info1.html" class="btn btn-primary btn-lg">SHOP &raquo;</a></p>
+            @Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.NextSortOrder }) |
+        </th>
+        <th>
+            @Html.DisplayNameFor(model=> model.Price)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+           
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+            @Html.ActionLink("Edit", "Edit", new { id = item.GameId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.GameId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.GameId }
+       )
+        </td>
+    </tr>
+}
+
+</table>
